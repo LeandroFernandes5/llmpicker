@@ -21,8 +21,8 @@ export default function TabLayout() {
           backgroundColor: theme.background,
           borderTopColor: theme.border,
           borderTopWidth: Platform.select({ ios: 0.5, android: 0 }),
-          height: Platform.select({ ios: 84, android: 64 }),
-          paddingBottom: Platform.select({ ios: 24, android: 8, web: 34 }),
+          height: Platform.select({ ios: 84, android: 64, web: 72 }),
+          paddingBottom: Platform.select({ ios: 24, android: 8, web: 44 }),
         },
         tabBarLabelStyle,
       }}
