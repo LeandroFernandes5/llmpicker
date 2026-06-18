@@ -22,7 +22,11 @@ export default function TabLayout() {
           borderTopColor: theme.border,
           borderTopWidth: Platform.select({ ios: 0.5, android: 0 }),
           height: Platform.select({ ios: 84, android: 64 }),
-          paddingBottom: Platform.select({ ios: 24, android: 8 }),
+          paddingBottom: Platform.select({
+            ios: 24,
+            android: 8,
+            web: 'calc(env(safe-area-inset-bottom) + 8px)',
+          }),
         },
         tabBarLabelStyle,
       }}
