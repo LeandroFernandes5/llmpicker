@@ -1,16 +1,13 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { Platform, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
 import { SQLiteProvider, useSQLiteContext } from 'expo-sqlite';
 import { Stack } from 'expo-router';
-import { enableScreens } from 'react-native-screens';
 
 import { migrateDbIfNeeded } from '@/db/schema';
 import { useApiKeysStore } from '@/store/api-keys';
 import { useConversationsStore } from '@/store/conversations';
 import { useTemplatesStore } from '@/store/templates';
-
-if (Platform.OS === 'web') enableScreens(false);
 
 function BootstrapStores() {
   const db = useSQLiteContext();
