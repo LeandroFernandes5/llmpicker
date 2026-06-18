@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import { SQLiteProvider, useSQLiteContext } from 'expo-sqlite';
 import { Stack } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { migrateDbIfNeeded } from '@/db/schema';
 import { useApiKeysStore } from '@/store/api-keys';
@@ -28,17 +29,19 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <SQLiteProvider databaseName="llmpicker.db" onInit={migrateDbIfNeeded}>
-        <BootstrapStores />
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="chat/[id]"
-            options={{ headerShown: false }}
-          />
-        </Stack>
-      </SQLiteProvider>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <SQLiteProvider databaseName="llmpicker.db" onInit={migrateDbIfNeeded}>
+          <BootstrapStores />
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="chat/[id]"
+              options={{ headerShown: false }}
+            />
+          </Stack>
+        </SQLiteProvider>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
